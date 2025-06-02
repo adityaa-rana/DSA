@@ -21,7 +21,6 @@ TreeNode* successor(TreeNode* root,TreeNode* key){
             ans=root;
             root=root->left;
         }
-    
     }
     return ans;
 }

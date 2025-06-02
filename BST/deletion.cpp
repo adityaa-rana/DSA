@@ -26,25 +26,25 @@ TreeNode* findMin(TreeNode* node) {
         }
         else {
             // Node found
-            if (root->left == NULL && root->right == NULL) {
-                delete root;
-                return NULL;
+                if (root->left == NULL && root->right == NULL) {
+                    delete root;
+                    return NULL;
+                }
+                else if (root->left == NULL) {
+                    TreeNode* temp = root->right;
+                    delete root;
+                    return temp;
+                }
+                else if (root->right == NULL) {
+                    TreeNode* temp = root->left;
+                    delete root;
+                    return temp;
+                }
+                else {
+                    TreeNode* temp = findMin(root->right);
+                    root->val = temp->val;
+                    root->right = deleteNode(root->right, temp->val);
+                }
             }
-            else if (root->left == NULL) {
-                TreeNode* temp = root->right;
-                delete root;
-                return temp;
-            }
-            else if (root->right == NULL) {
-                TreeNode* temp = root->left;
-                delete root;
-                return temp;
-            }
-            else {
-                TreeNode* temp = findMin(root->right);
-                root->val = temp->val;
-                root->right = deleteNode(root->right, temp->val);
-            }
-        }
-        return root;
+            return root;
     }
